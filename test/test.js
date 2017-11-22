@@ -39,6 +39,12 @@ describe('Negativity', function () {
       done();
     });
   });
+  describe('#negativeComparative', function () {
+    it('should properly handle punctuation', function (done) {
+      negativity("I'll be here till 5").score.should.equal(0);
+      done();
+    });
+  });
 });
 
 
@@ -77,6 +83,12 @@ describe('Positivity', function () {
       done();
     });
   });
+  describe('#positiveComparative', function () {
+    it('should properly handle punctuation', function (done) {
+      positivity("I'll be here till 5").score.should.equal(0);
+      done();
+    });
+  });
 });
 
 describe('Analyze', function () {
@@ -107,6 +119,13 @@ describe('Analyze', function () {
   describe('#comparative', function () {
     it('should equal (positive - negative) / word count ', function (done) {
       analyze("An amazing anti").comparative.should.equal(1);
+      done();
+    });
+  });
+  describe('Russian', function () {
+    it('RU1', function(done) {
+      analyze("Система автоопределения тональности явно недооценена").score.should.equal(-1);
+      analyze("Система автоопределения тональности явно недооценена").comparative.should.equal(-0.2);
       done();
     });
   });
